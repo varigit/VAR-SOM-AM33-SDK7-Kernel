@@ -258,7 +258,7 @@ static int tps65910_rtc_probe(struct platform_device *pdev)
 	ret = regmap_write(tps65910->regmap, TPS65910_RTC_CTRL, rtc_reg);
 	if (ret < 0)
 		return ret;
-
+#if 0
 	irq  = platform_get_irq(pdev, 0);
 	if (irq <= 0) {
 		dev_warn(&pdev->dev, "Wake up is not possible as irq = %d\n",
@@ -275,6 +275,7 @@ static int tps65910_rtc_probe(struct platform_device *pdev)
 	}
 	tps_rtc->irq = irq;
 	device_set_wakeup_capable(&pdev->dev, 1);
+#endif	
 
 	tps_rtc->rtc = devm_rtc_device_register(&pdev->dev, pdev->name,
 		&tps65910_rtc_ops, THIS_MODULE);
@@ -299,6 +300,15 @@ static int tps65910_rtc_remove(struct platform_device *pdev)
 
 	return 0;
 }
+
+#ifdef CONFIG_OF
+static const struct of_device_id tps65910_rtc_dt_match[] = {
+	{ .compatible = "ti,tps65910-rtc", },
+	{},
+};
+MODULE_DEVICE_TABLE(of, tps65910_rtc_dt_match);
+#endif
+
 
 #ifdef CONFIG_PM_SLEEP
 static int tps65910_rtc_suspend(struct device *dev)
@@ -330,6 +340,9 @@ static struct platform_driver tps65910_rtc_driver = {
 		.owner	= THIS_MODULE,
 		.name	= "tps65910-rtc",
 		.pm	= &tps65910_rtc_pm_ops,
+#ifdef CONFIG_OF
+		.of_match_table	= of_match_ptr(tps65910_rtc_dt_match),
+#endif
 	},
 };
 

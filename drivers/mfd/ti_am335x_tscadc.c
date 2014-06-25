@@ -116,7 +116,7 @@ static void tscadc_idle_config(struct ti_tscadc_dev *config)
 	unsigned int idleconfig;
 
 	idleconfig = STEPCONFIG_YNN | STEPCONFIG_INM_ADCREFM |
-			STEPCONFIG_INP_ADCREFM | STEPCONFIG_YPN;
+			STEPCONFIG_INP_ADCREFM | STEPCONFIG_XNN;
 
 	tscadc_writel(config, REG_IDLECONFIG, idleconfig);
 }

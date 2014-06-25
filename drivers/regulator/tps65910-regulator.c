@@ -1074,6 +1074,10 @@ static int tps65910_probe(struct platform_device *pdev)
 	tps65910_reg_set_bits(pmic->mfd, TPS65910_DEVCTRL,
 				DEVCTRL_SR_CTL_I2C_SEL_MASK);
 
+	/* 32-kHz clock source is the crystal oscillator */
+	tps65910_reg_clear_bits(pmic->mfd, TPS65910_DEVCTRL,
+			DEVCTRL_CK32K_CTRL_MASK);
+
 	switch(tps65910_chip_id(tps65910)) {
 	case TPS65910:
 		pmic->get_ctrl_reg = &tps65910_get_ctrl_register;

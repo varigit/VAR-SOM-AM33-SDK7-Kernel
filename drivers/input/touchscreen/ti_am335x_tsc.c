@@ -36,8 +36,8 @@
 
 static const int config_pins[] = {
 	STEPCONFIG_XPP,
-	STEPCONFIG_XNN,
-	STEPCONFIG_YPP,
+	STEPCONFIG_YPN,
+	STEPCONFIG_XNP,
 	STEPCONFIG_YNN,
 };
 
@@ -174,7 +174,7 @@ static void titsc_step_config(struct titsc *ts_dev)
 	/* Charge step configuration */
 	config = ts_dev->bit_xp | ts_dev->bit_yn |
 			STEPCHARGE_RFP_XPUL | STEPCHARGE_RFM_XNUR |
-			STEPCHARGE_INM_AN1 | STEPCHARGE_INP(ts_dev->inp_yp);
+			STEPCHARGE_INM_AN2 | STEPCHARGE_INP(ts_dev->inp_xn);
 
 	titsc_writel(ts_dev, REG_CHARGECONFIG, config);
 	titsc_writel(ts_dev, REG_CHARGEDELAY, CHARGEDLY_OPENDLY);
@@ -184,6 +184,7 @@ static void titsc_step_config(struct titsc *ts_dev)
 			STEPCONFIG_AVG_16 | ts_dev->bit_yp |
 			ts_dev->bit_xn | STEPCONFIG_INM_ADCREFM |
 			STEPCONFIG_INP(ts_dev->inp_xp);
+
 	titsc_writel(ts_dev, REG_STEPCONFIG(end_step), config);
 	titsc_writel(ts_dev, REG_STEPDELAY(end_step),
 			STEPCONFIG_OPENDLY);

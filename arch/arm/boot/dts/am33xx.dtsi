@@ -452,6 +452,7 @@
 			ti,hwmods = "rtc";
 			clocks = <&clk_32768_ck>;
 			clock-names = "fck";
+			status = "disabled";
 		};
 
 		spi0: spi@48030000 {
