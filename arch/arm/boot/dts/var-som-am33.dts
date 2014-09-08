@@ -500,6 +500,22 @@
 					label = "NAND.file-system";
 					reg = <0x00A00000 0x0F600000>;
 				};
+				partition@10 {
+					label = "Android NAND.u-boot";
+					reg = <0x00080000 0x00260000>;
+				};
+				partition@11 {
+					label = "Android NAND.u-boot-env";
+					reg = <0x000000260000 0x000000280000>;
+				};
+				partition@12 {
+					label = "Android Kernel";
+					reg = <0x000000280000 0x000000780000>;
+				};
+				partition@13 {
+					label = "Android File System";
+					reg = <0x000000780000 0x000010000000>;
+				};
 			};
 		};
 
