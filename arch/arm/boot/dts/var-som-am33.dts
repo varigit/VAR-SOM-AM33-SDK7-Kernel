@@ -334,6 +334,42 @@
 			status = "okay";
 		};
 
+		uart2: serial@48024000 {
+			/*
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart2_pins_default>;
+			pinctrl-1 = <&uart2_pins_sleep>;
+			*/
+			status = "okay";
+		};
+
+		uart3: serial@481a6000 {
+			/*
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart3_pins_default>;
+			pinctrl-1 = <&uart3_pins_sleep>;
+			*/
+			status = "okay";
+		};
+
+		uart4: serial@481a8000 {
+			/*
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart4_pins_default>;
+			pinctrl-1 = <&uart4_pins_sleep>;
+			*/
+			status = "okay";
+		};
+
+		uart5: serial@481aa000 {
+			/*
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart5_pins_default>;
+			pinctrl-1 = <&uart5_pins_sleep>;
+			*/
+			status = "okay";
+		};
+
 		i2c0: i2c@44e0b000 {
 			pinctrl-names = "default";
 			pinctrl-0 = <&i2c0_pins>;
